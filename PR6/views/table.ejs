@@ -1,0 +1,53 @@
+<%- include('header') %>
+
+<style>
+  .cardbody{
+    background-color: #f6f9ff  }
+</style>
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>General Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">General</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <form method="post" action="/viewform" enctype="multipart/form-data">
+
+    <section class="section">
+          <div class="card">
+            <div class="card-body row justify-content-evenly">
+              <% record.map((val)=>{
+                const{name,detail,image}=val;
+                %>
+                    <div class="card cardbody my-5 p-2  border-3" style="width: 18rem;">
+                        <img src="<%=image%>" class="card-img-top" width="100%" height="200px" style="object-fit: cover;" alt="..." >
+                        <div class="card-body">
+                          <h4 class="card-title"><%=name%></h4>
+                          <p class="card-text"><%=detail%></p>
+                          <button class="btn btn-dark">
+                            <a href="/editdata?id=<%= val.id %>" class="text-decoration-none text-light text-uppercase">edit</a>
+                        </button>
+                        <button class="btn btn-dark">
+                            <a href="/deletedata?id=<%= val.id %>" class="text-decoration-none text-light text-uppercase">delete</a>
+                        </button>
+                        </div>
+                      </div>
+              <% }) %> 
+            </div>
+          </div>
+
+        </div>
+    </section>
+
+    </form>
+  </main><!-- End #main -->
+
+ 
+<%- include('footer') %>
